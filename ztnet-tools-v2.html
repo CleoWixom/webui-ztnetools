@@ -1194,7 +1194,7 @@ td.mono { font-family: 'IBM Plex Mono', monospace; color: var(--text2); font-siz
     <span></span><span></span><span></span>
   </button>
 
-  <a class="logo" href="#" onclick="navigate('dashboard'); return false;">
+  <a class="logo" href="#" onclick="navigate('/'); return false;">
     <div class="logo-ring">
       <svg viewBox="0 0 34 34" fill="none">
         <circle cx="17" cy="17" r="15" stroke="#00ccff" stroke-width="1" opacity="0.2"/>
@@ -1241,48 +1241,48 @@ td.mono { font-family: 'IBM Plex Mono', monospace; color: var(--text2); font-siz
   <aside id="sidebar">
     <div class="nav-group">
       <div class="nav-group-label">Overview</div>
-      <div class="nav-item active" onclick="navigate('dashboard')">
+      <div class="nav-item active" onclick="navigate('/')" data-route-key="dashboard">
         <span class="nav-ic">⬡</span> Dashboard
       </div>
-      <div class="nav-item" onclick="navigate('status')">
+      <div class="nav-item" onclick="navigate('/status')" data-route-key="status">
         <span class="nav-ic">◉</span> Node Status
       </div>
     </div>
     <div class="nav-group">
       <div class="nav-group-label">Networks</div>
-      <div class="nav-item" onclick="navigate('networks')">
+      <div class="nav-item" onclick="navigate('/networks')" data-route-key="networks">
         <span class="nav-ic">⬢</span> All Networks
         <span class="nav-badge" id="netBadge">0</span>
       </div>
-      <div class="nav-item" onclick="navigate('create-network')">
+      <div class="nav-item" onclick="navigate('/networks/create')" data-route-key="create-network">
         <span class="nav-ic">⊕</span> Create Network
       </div>
-      <div class="nav-item" onclick="navigate('network-config')">
+      <div class="nav-item" onclick="navigate(S.selectedNwid ? `/networks/${S.selectedNwid}` : '/networks')" data-route-key="network-config">
         <span class="nav-ic">⚙</span> Configure Network
       </div>
     </div>
     <div class="nav-group">
       <div class="nav-group-label">Members</div>
-      <div class="nav-item" onclick="navigate('members')">
+      <div class="nav-item" onclick="navigate('/members')" data-route-key="members">
         <span class="nav-ic">◎</span> Members
         <span class="nav-badge" id="memBadge">0</span>
       </div>
-      <div class="nav-item" onclick="navigate('member-detail')">
+      <div class="nav-item" onclick="navigate((S.selectedNwid && getVal('detailMemid')) ? `/members/${S.selectedNwid}/${getVal('detailMemid')}` : '/members')" data-route-key="member-detail">
         <span class="nav-ic">◐</span> Member Detail
       </div>
     </div>
     <div class="nav-group">
       <div class="nav-group-label">Developer</div>
-      <div class="nav-item" onclick="navigate('raw-api')">
+      <div class="nav-item" onclick="navigate('/api')" data-route-key="raw-api">
         <span class="nav-ic">≺/≻</span> Raw API
       </div>
-      <div class="nav-item" onclick="navigate('terminal')">
+      <div class="nav-item" onclick="navigate('/curl')" data-route-key="terminal">
         <span class="nav-ic">$_</span> cURL Builder
       </div>
     </div>
     <div class="nav-group">
       <div class="nav-group-label">System</div>
-      <div class="nav-item" onclick="navigate('settings')">
+      <div class="nav-item" onclick="navigate('/settings')" data-route-key="settings">
         <span class="nav-ic">◧</span> Connection
       </div>
     </div>
@@ -1345,7 +1345,7 @@ td.mono { font-family: 'IBM Plex Mono', monospace; color: var(--text2); font-siz
       <div class="card">
         <div class="card-hdr">
           <div class="card-title"><span class="ic">⬢</span> Networks</div>
-          <button class="btn btn-ghost btn-sm" onclick="navigate('create-network')">⊕ New</button>
+          <button class="btn btn-ghost btn-sm" onclick="navigate('/networks/create')">⊕ New</button>
         </div>
         <div id="dashNetworks">
           <div class="empty">
@@ -1390,7 +1390,7 @@ td.mono { font-family: 'IBM Plex Mono', monospace; color: var(--text2); font-siz
         </div>
         <div class="page-actions">
           <button class="btn btn-ghost btn-sm" onclick="loadNetworks()">↻ Refresh</button>
-          <button class="btn btn-primary btn-sm" onclick="navigate('create-network')">⊕ Create</button>
+          <button class="btn btn-primary btn-sm" onclick="navigate('/networks/create')">⊕ Create</button>
         </div>
       </div>
       <div class="search-bar">
@@ -2468,25 +2468,25 @@ cloudflared tunnel run ztnet</span></div>
 
 <!-- ═══ MOBILE BOTTOM NAV ═══ -->
 <nav id="mob-nav">
-  <div class="mob-nav-item active" onclick="navigate('dashboard')" data-page="dashboard">
+  <div class="mob-nav-item active" onclick="navigate('/')" data-page="dashboard">
     <div class="mob-nav-icon">⬡</div>
     <div class="mob-nav-lbl">Home</div>
   </div>
-  <div class="mob-nav-item" onclick="navigate('networks')" data-page="networks">
+  <div class="mob-nav-item" onclick="navigate('/networks')" data-page="networks">
     <div class="mob-nav-icon">⬢</div>
     <div class="mob-nav-lbl">Networks</div>
     <div class="mob-nav-badge" id="mobNetBadge"></div>
   </div>
-  <div class="mob-nav-item" onclick="navigate('members')" data-page="members">
+  <div class="mob-nav-item" onclick="navigate('/members')" data-page="members">
     <div class="mob-nav-icon">◎</div>
     <div class="mob-nav-lbl">Members</div>
     <div class="mob-nav-badge" id="mobMemBadge"></div>
   </div>
-  <div class="mob-nav-item" onclick="navigate('raw-api')" data-page="raw-api">
+  <div class="mob-nav-item" onclick="navigate('/api')" data-page="raw-api">
     <div class="mob-nav-icon">≺/≻</div>
     <div class="mob-nav-lbl">API</div>
   </div>
-  <div class="mob-nav-item" onclick="navigate('settings')" data-page="settings">
+  <div class="mob-nav-item" onclick="navigate('/settings')" data-page="settings">
     <div class="mob-nav-icon">◧</div>
     <div class="mob-nav-lbl">Settings</div>
   </div>
@@ -2549,17 +2549,86 @@ function loadPrefs() {
 // ═══════════════════════════════════════════════════════
 //  NAVIGATION
 // ═══════════════════════════════════════════════════════
-function navigate(page) {
+const ROUTES = [
+  { pattern: /^\/$/, page: 'dashboard', panel: 'dashboard' },
+  { pattern: /^\/status\/?$/, page: 'status', panel: 'status' },
+  { pattern: /^\/networks\/?$/, page: 'networks', panel: 'networks' },
+  { pattern: /^\/networks\/create\/?$/, page: 'create-network', panel: 'create-network' },
+  { pattern: /^\/networks\/([^/]+)\/?$/, page: 'network-config', panel: 'network-config', params: ['nwid'] },
+  { pattern: /^\/members\/?$/, page: 'members', panel: 'members' },
+  { pattern: /^\/members\/([^/]+)\/([^/]+)\/?$/, page: 'member-detail', panel: 'member-detail', params: ['nwid', 'id'] },
+  { pattern: /^\/api\/?$/, page: 'raw-api', panel: 'raw-api' },
+  { pattern: /^\/curl\/?$/, page: 'terminal', panel: 'terminal' },
+  { pattern: /^\/settings\/?$/, page: 'settings', panel: 'settings' },
+];
+
+const LEGACY_PAGE_TO_PATH = {
+  dashboard: '/',
+  status: '/status',
+  networks: '/networks',
+  'create-network': '/networks/create',
+  'network-config': '/networks',
+  members: '/members',
+  'member-detail': '/members',
+  'raw-api': '/api',
+  terminal: '/curl',
+  settings: '/settings',
+};
+
+let routeState = { page: 'dashboard', panel: 'dashboard', path: '/', params: {} };
+
+function matchRoute(pathname) {
+  for (const route of ROUTES) {
+    const match = pathname.match(route.pattern);
+    if (!match) continue;
+    const params = {};
+    (route.params || []).forEach((key, idx) => { params[key] = decodeURIComponent(match[idx + 1] || ''); });
+    return { ...route, path: pathname, params };
+  }
+  return null;
+}
+
+function applyRouteParams(route) {
+  const { nwid, id } = route.params || {};
+  if (nwid) {
+    S.selectedNwid = nwid;
+    setVal('configNwid', nwid);
+    setVal('membersNwid', nwid);
+    setVal('curlNwid', nwid);
+  }
+  if (id) {
+    setVal('detailMemid', id);
+    setVal('curlMemId', id);
+  }
+  if (route.page === 'member-detail' && nwid) {
+    setVal('detailNwid', nwid);
+  }
+}
+
+function navigate(target, options = {}) {
+  const resolvedTarget = target.startsWith('/') ? target : (LEGACY_PAGE_TO_PATH[target] || '/');
+  const route = matchRoute(resolvedTarget) || matchRoute('/');
+  if (!route) return;
+
+  if (!options.fromPopState) {
+    const method = options.replace ? 'replaceState' : 'pushState';
+    history[method]({}, '', resolvedTarget);
+  }
+
+  routeState = route;
+  applyRouteParams(route);
+
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.querySelectorAll('.mob-nav-item').forEach(n => n.classList.remove('active'));
 
-  const panel = document.getElementById('panel-' + page);
+  const page = route.page;
+  const panel = document.getElementById('panel-' + route.panel);
   if (panel) panel.classList.add('active');
 
   // Sidebar
   document.querySelectorAll('.nav-item').forEach(n => {
-    if ((n.getAttribute('onclick') || '').includes(`'${page}'`)) n.classList.add('active');
+    if (n.dataset.routeKey === page) n.classList.add('active');
   });
 
   // Mobile bottom nav
@@ -2576,6 +2645,17 @@ function navigate(page) {
 
   // Auto-actions
   if (page === 'terminal') renderCurl();
+  if (page === 'network-config' && route.params.nwid) loadNetworkConfig();
+  if (page === 'members' && (route.params.nwid || S.selectedNwid)) loadMembers();
+  if (page === 'member-detail' && route.params.nwid && route.params.id) loadMemberDetail();
+}
+
+function useNavigate() {
+  return (to, options = {}) => navigate(to, options);
+}
+
+function useParams() {
+  return routeState.params || {};
 }
 
 // ═══════════════════════════════════════════════════════
@@ -2600,8 +2680,11 @@ function closeSidebar() {
 // ═══════════════════════════════════════════════════════
 function fabAction() {
   const active = document.querySelector('.panel.active')?.id;
-  if (active === 'panel-members') navigate('member-detail');
-  else navigate('create-network');
+  if (active === 'panel-members') {
+    if (S.selectedNwid && getVal('detailMemid')) navigate(`/members/${S.selectedNwid}/${getVal('detailMemid')}`);
+    else navigate('/members');
+  }
+  else navigate('/networks/create');
 }
 
 // ═══════════════════════════════════════════════════════
@@ -2815,15 +2898,13 @@ function filterNetworks() {
 function goToNetwork(nwid) {
   S.selectedNwid = nwid;
   setVal('configNwid', nwid);
-  navigate('network-config');
-  loadNetworkConfig();
+  navigate(`/networks/${encodeURIComponent(nwid)}`);
 }
 
 function goToMembers(nwid) {
   S.selectedNwid = nwid;
   setVal('membersNwid', nwid);
-  navigate('members');
-  loadMembers();
+  navigate('/members');
 }
 
 // ═══════════════════════════════════════════════════════
@@ -3365,7 +3446,8 @@ function removeV6Route(i) { S.v6routes.splice(i,1); renderV6Routes(); }
 //  NETWORK CONFIG
 // ═══════════════════════════════════════════════════════
 async function loadNetworkConfig() {
-  const nwid = getVal('configNwid').trim();
+  const params = useParams();
+  const nwid = (params.nwid || getVal('configNwid')).trim();
   if (!nwid) { toast('Enter a Network ID', 'err'); return; }
   const res = await api('GET', `/controller/network/${nwid}`);
   if (!res?.ok) { toast('Failed to load network config', 'err'); return; }
@@ -3533,7 +3615,7 @@ async function deleteNetwork() {
     document.getElementById('networkConfigForm').style.display = 'none';
     S.networks = S.networks.filter(n => n.id !== nwid);
     await loadNetworksData();
-    navigate('networks');
+    navigate('/networks');
   } else {
     toast('Delete failed', 'err');
   }
@@ -3574,7 +3656,8 @@ function filterPicker() {
 //  MEMBERS
 // ═══════════════════════════════════════════════════════
 async function loadMembers() {
-  const nwid = getVal('membersNwid').trim() || S.selectedNwid;
+  const params = useParams();
+  const nwid = (params.nwid || getVal('membersNwid')).trim() || S.selectedNwid;
   if (!nwid) { toast('Enter or select a Network ID', 'err'); return; }
   S.selectedNwid = nwid;
   setVal('membersNwid', nwid);
@@ -3658,16 +3741,16 @@ async function qDeleteMember(nwid, memid) {
 function openMemberDetail(nwid, memid) {
   setVal('detailNwid', nwid);
   setVal('detailMemid', memid);
-  navigate('member-detail');
-  loadMemberDetail();
+  navigate(`/members/${encodeURIComponent(nwid)}/${encodeURIComponent(memid)}`);
 }
 
 // ═══════════════════════════════════════════════════════
 //  MEMBER DETAIL
 // ═══════════════════════════════════════════════════════
 async function loadMemberDetail() {
-  const nwid  = getVal('detailNwid').trim();
-  const memid = getVal('detailMemid').trim();
+  const params = useParams();
+  const nwid  = (params.nwid || getVal('detailNwid')).trim();
+  const memid = (params.id || getVal('detailMemid')).trim();
   if (!nwid || !memid) { toast('Enter Network ID and Member ID', 'err'); return; }
   const res = await api('GET', `/controller/network/${nwid}/member/${memid}`);
   if (!res?.ok) { toast('Failed to load member', 'err'); return; }
@@ -3742,7 +3825,7 @@ async function deleteMember() {
   if (res?.ok) {
     toast('Member deleted', 'ok');
     document.getElementById('memberDetailPanel').style.display = 'none';
-    navigate('members');
+    navigate('/members');
     await loadMembers();
   } else toast('Delete failed', 'err');
 }
@@ -3765,7 +3848,7 @@ async function sendRawRequest() {
   }
 }
 
-function qApi(m, p) { setVal('rawMethod', m); setVal('rawPath', p); navigate('raw-api'); sendRawRequest(); }
+function qApi(m, p) { setVal('rawMethod', m); setVal('rawPath', p); navigate('/api'); sendRawRequest(); }
 function qApiNet() {
   const nwid = S.selectedNwid || S.networks[0]?.id;
   if (!nwid) { toast('Select a network first', 'err'); return; }
@@ -3989,6 +4072,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Enter') testConnection(id.startsWith('mob'));
     });
   });
+
+  const appNavigate = useNavigate();
+  appNavigate(location.pathname || '/', { replace: true });
+});
+
+window.addEventListener('popstate', () => {
+  navigate(location.pathname || '/', { fromPopState: true });
 });
 </script>
 </body>

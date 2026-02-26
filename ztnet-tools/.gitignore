@@ -1,0 +1,25 @@
+# Go
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+coverage.out
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Logs and env
+*.log
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+.DS_Store
